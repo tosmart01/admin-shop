@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --host 0.0.0.0 --port 5000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
+    "uuid": "^8.3.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },
