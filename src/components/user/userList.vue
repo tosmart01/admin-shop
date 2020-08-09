@@ -1,5 +1,11 @@
 <template>
   <div>
+      <!--面包屑导航-->
+  <el-breadcrumb separator="/">
+    <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
+    <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+    <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+  </el-breadcrumb>
     <!--用户列表-->
     <el-card class="box-card">
       <el-row :gutter="20">
@@ -22,7 +28,7 @@
           <el-table-column prop="username" label="姓名" width="150px"></el-table-column>
           <el-table-column prop="email" label="邮箱" width="200px"></el-table-column>
           <el-table-column prop="telephone" label="电话"></el-table-column>
-          <el-table-column prop="group" label="角色"></el-table-column>
+          <el-table-column prop="role" label="角色"></el-table-column>
           <el-table-column prop="is_active" label="是否激活">
             <template slot-scope="scope">
               <el-switch
@@ -106,7 +112,7 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-          <el-button >取 消</el-button>
+          <el-button @click="changeVisible=false">取 消</el-button>
           <el-button type="primary" @click="changeSubmit(updateForm.id)">确 定</el-button>
         </span>
     </el-dialog>
@@ -182,7 +188,6 @@
     },
     methods: {
       async getUserList(searchField) {
-        console.log(searchField)
         var query = searchField ? searchField : this.querys
 
         const {data: res} = await this.axios.get('/api/user/', {
@@ -197,18 +202,22 @@
         const {data:res,status:status_code} = await this.axios.get('/api/user/'+id)
         if(res.code!=200) return this.$message.error('获取用户信息失败')
         this.updateForm = res.data
-        this.axios.get('/api/user/grouplist/').then(({data: res}) => {
+        this.axios.get('/api/user/rolelist/',{params:{'limit':1000}})
+          .then(({data: res}) => {
           if (res.code != 200) return this.$message.error('角色列表获取失败')
-          this.groups = res.data
+          this.groups = res.data.results
+            console.log(this.updateForm,this.groups)
         })
 
       },
       async changeSubmit(id){
-        console.log(this.updateForm)
-        const {data:res} = await this.axios.put('/api/user/'+id,this.updateForm)
+        const {data:res} = await this.axios.put('/api/user/'+id,{
+         email:this.updateForm.email,role:this.updateForm.group
+        })
         if (res.code != 200) return this.$message.error('修改失败')
         this.changeVisible = false
         this.getUserList({})
+        this.$message.success('修改成功')
 
       },
       async changeActive(id, active) {
@@ -233,9 +242,10 @@
       },
       showGroupForm() {
         this.dialogVisible = true
-        this.axios.get('/api/user/grouplist/').then(({data: res}) => {
+        this.axios.get('/api/user/rolelist/',{params:{'limit':1000}})
+          .then(({data: res}) => {
           if (res.code != 200) return this.$message.error('角色列表获取失败')
-          this.groups = res.data
+          this.groups = res.data.results
         })
 
       },
@@ -278,14 +288,6 @@
 <style>
   .el-input {
     width: 300px;
-  }
-
-  .box-card {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) !important;
-  }
-
-  .el-table {
-    font-size: 10px;
   }
 
   .el-pagination {

@@ -82,10 +82,12 @@
             if(flag){
               var {data: res} =await this.axios.post('api/user/login/',this.form)
               if(res.code != 200){
-                  this.Error.code = res.msg
                   this.codeUrl()
+                  this.$message.error(res.msg)
+                  // this.Error.code = res.msg
               }else {
                 this.$message.success('登录成功')
+                window.localStorage.setItem('token',res.data.token)
                 this.$router.push('/index')
               }
             }

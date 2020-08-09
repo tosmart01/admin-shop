@@ -3,9 +3,14 @@ import {Button, FormItem, Form, Input, Icon, Image, Message,
   Menu, Submenu, MenuItemGroup, MenuItem,Container,Header
   ,Aside,Main,Breadcrumb,BreadcrumbItem,Card,Row,Col,
   Table,TableColumn,Switch,Tooltip,Pagination,Dialog,Select,MessageBox,
-Option} from 'element-ui'
+Option,Tag,Checkbox,CheckboxGroup,Tree} from 'element-ui'
 
+
+Vue.use(Tree)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
 Vue.use(Button)
+Vue.use(Tag)
 Vue.use(Form)
 Vue.use(Input)
 Vue.use(FormItem)
