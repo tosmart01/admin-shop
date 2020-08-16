@@ -1,11 +1,19 @@
 import Vue from 'vue'
-import {Button, FormItem, Form, Input, Icon, Image, Message,
-  Menu, Submenu, MenuItemGroup, MenuItem,Container,Header
-  ,Aside,Main,Breadcrumb,BreadcrumbItem,Card,Row,Col,
-  Table,TableColumn,Switch,Tooltip,Pagination,Dialog,Select,MessageBox,
-Option,Tag,Checkbox,CheckboxGroup,Tree} from 'element-ui'
+import {
+  Button, FormItem, Form, Input, Icon, Image, Message,
+  Menu, Submenu, MenuItemGroup, MenuItem, Container, Header
+  , Aside, Main, Breadcrumb, BreadcrumbItem, Card, Row, Col,
+  Table, TableColumn, Switch, Tooltip, Pagination, Dialog, Select, MessageBox,
+  Option, Tag, Checkbox, CheckboxGroup, Tree, Cascader, Alert,
+  Tabs,TabPane
+} from 'element-ui'
 
 
+Vue.use(TabPane)
+Vue.use(Tabs)
+Vue.use(Alert)
+Vue.use(Alert)
+Vue.use(Cascader)
 Vue.use(Tree)
 Vue.use(CheckboxGroup)
 Vue.use(Checkbox)

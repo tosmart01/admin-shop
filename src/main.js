@@ -5,9 +5,12 @@ import axios from 'axios'
 import './plugins/element.js'
 import './assets/global.css'
 import './assets/fonts/style.css'
+import ZkTable from 'vue-table-with-tree-grid'
 
 Vue.config.productionTip = false
 axios.defaults.baseURL = 'http://192.168.44.128:8000/'
+//table组件
+Vue.component('tree', ZkTable)
 
 // http request 拦截器
 axios.interceptors.request.use(

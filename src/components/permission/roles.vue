@@ -22,11 +22,6 @@
               <el-form-item label="角色描述" prop="info">
                 <el-input v-model="form.info"></el-input>
               </el-form-item>
-              <el-form-item label="权限组" prop="">
-                <el-checkbox-group v-model="form.checkList">
-                  <el-checkbox :label="item.id" v-for="item in groups">{{item.name}}</el-checkbox>
-                </el-checkbox-group>
-              </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
                   <el-button @click="dialogVisible = false">取 消</el-button>
@@ -74,16 +69,6 @@
       </el-table>
 
 
-      <!-- 分页-->
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[5, 10, 20, 100]"
-        :page-size="querys.limit"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total">
-      </el-pagination>
       <!--修改角色表单 -->
       <el-dialog
         title="修改角色"
@@ -97,7 +82,7 @@
             <el-input v-model="changeForm.info"></el-input>
           </el-form-item>
           <el-form-item label="权限组" prop="">
-            <el-checkbox-group v-model="changeForm.groups">
+            <el-checkbox-group v-model="changeForm.groups" disabled>
               <el-checkbox :label="item.id" v-for="item in groups">{{item.name}}</el-checkbox>
             </el-checkbox-group>
           </el-form-item>
@@ -161,11 +146,6 @@
         roleList: [],
         dialogVisible: false,
         groups: [],
-        querys: {
-          offset: 0, limit: 5,
-        },
-        currentPage: 1,
-        total: 0,
         form: {
           name: '',
           info: '',
@@ -199,15 +179,7 @@
         })
         if (res.code != 200) return this.$message.error('获取权限列表失败')
         this.loadNode = res.data.results
-        var checklist = []
-        obj.groups.forEach(function (value,index) {
-           value.permissions.forEach(function (value2, index2, array) {
-             if(res.data.checklist.indexOf(value2.id)!=-1){
-                checklist.push(value2.id)
-             }
-           })
-        })
-        this.checkPermList = checklist
+        this.checkPermList = res.data.checklist
 
       },
       //添加权限
@@ -224,12 +196,9 @@
 
       },
       async getRoleList() {
-        const {data: res} = await this.axios.get('/api/user/roleperm/', {
-          params: this.querys
-        })
+        const {data: res} = await this.axios.get('/api/user/roleperm/',)
         if (res.code != 200) return this.$message.error('获取角色列表失败')
-        this.roleList = res.data.results
-        this.total = res.data.count
+        this.roleList = res.data
       },
       //删除权限或组
       async deletePerm(role, group, perm) {
@@ -243,10 +212,11 @@
           group: group.id, perm
         })
         if (res.code != 200) return this.$message.error('删除权限失败')
-        console.log(group, res.data)
-        role.groups = res.data
-
-
+        if(group && perm){
+          group.permissions.splice(group.permissions.indexOf(perm),1)
+        }else if(group && !perm) {
+          role.groups.splice(role.groups.indexOf(group),1)
+        }
       },
       async getGroupList() {
         const {data: res} = await this.axios.get('/api/group/')
@@ -303,16 +273,6 @@
         if (res.code != 200) return this.$message.error(res.msg)
         this.$message.success('修改成功')
         this.changeBox = false
-        this.getRoleList()
-      },
-
-
-      handleSizeChange(val) {
-        this.querys.limit = val
-        this.getRoleList()
-      },
-      handleCurrentChange(val) {
-        this.querys.offset = (val - 1) * this.querys.limit
         this.getRoleList()
       },
 

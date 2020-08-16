@@ -5,6 +5,8 @@ import index from '../components/index'
 import User from '../components/user/userList'
 import Perm from '../components/permission/perm'
 import Role from '../components/permission/roles'
+import Goods from '../components/goods/goods'
+import GoodsParam from '../components/goods/goodsParam'
 
 Vue.use(VueRouter)
 
@@ -16,6 +18,8 @@ const routes = [
       {path: '/api/user/',component:User},
       {path: '/api/perm/',component:Perm},
       {path: '/api/roles/',component:Role},
+      {path: '/api/goodscate/',component:Goods},
+      {path: '/api/goodsparam/',component:GoodsParam},
     ],
   }
 ]
