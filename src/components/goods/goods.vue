@@ -16,10 +16,10 @@
       <el-dialog
         title="添加商品分类"
         :visible.sync="dialogVisible"
-        width="40%"
+        width="30%"
         @close="GoodsClose"
       >
-        <el-form ref="form" :model="form" label-width="30%" :rules="rule" @submit.native.prevent="categorySubmit">
+        <el-form ref="form" :model="form" label-width="80px" :rules="rule" @submit.native.prevent="categorySubmit">
           <el-form-item label="分类名称" prop="name" autofocus>
             <el-input ref="formInput" v-model="form.name"></el-input>
           </el-form-item>
@@ -65,10 +65,10 @@
       <el-dialog
         title="编辑商品分类"
         :visible.sync="dialogVisibleEdit"
-        width="40%"
+        width="30%"
         @close="GoodsEditClose"
       >
-        <el-form ref="formEdit" :model="formEdit" label-width="30%" :rules="rule" @submit.prevent.native="GoodsEditSubmit">
+        <el-form ref="formEdit" :model="formEdit" label-width="80px" :rules="rule" @submit.prevent.native="GoodsEditSubmit">
           <el-form-item label="分类名称" prop="name">
             <el-input v-model="formEdit.name"></el-input>
           </el-form-item>
@@ -264,12 +264,15 @@
     },
   }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .el-row {
     margin-bottom: 20px;
   }
   .el-form .el-cascader {
     margin-top: 0;
+  }
+    .el-dialog .el-form{
+    width: 80%;
   }
 
 </style>

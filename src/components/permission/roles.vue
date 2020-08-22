@@ -279,7 +279,7 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .el-tag {
     margin: 9px;
   }

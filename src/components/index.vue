@@ -6,7 +6,7 @@
           <img src="../assets/heima.png" alt="">
           <span>五五开管理系统</span>
         </div>
-        <el-button type="info" round size="small">注销</el-button>
+        <el-button type="info" round size="small" @click="out">注销</el-button>
       </el-header>
       <el-container>
         <el-aside :width="width">
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+  import cookie from 'js-cookie'
   export default {
 
     data() {
@@ -76,6 +77,10 @@
       activeMenu(url) {
         window.sessionStorage.setItem('default-active', url)
         this.defaultActive = url
+      },
+      out(){
+        cookie.remove('token')
+        this.$router.push('/login')
       },
     },
     created() {

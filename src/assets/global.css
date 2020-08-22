@@ -18,3 +18,13 @@ html,body,#app {
 .el-row{
 margin-bottom: 20px;
 }
+.el-pagination {
+    margin-top: 15px;
+}
+
+.quill-editor {
+width: 80%;
+}
+.el-form .ql-container{
+min-height: 400px;
+}

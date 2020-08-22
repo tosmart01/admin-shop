@@ -5,10 +5,15 @@ import {
   , Aside, Main, Breadcrumb, BreadcrumbItem, Card, Row, Col,
   Table, TableColumn, Switch, Tooltip, Pagination, Dialog, Select, MessageBox,
   Option, Tag, Checkbox, CheckboxGroup, Tree, Cascader, Alert,
-  Tabs,TabPane
+  Tabs,TabPane,Step,Steps,Upload,Timeline,TimelineItem
 } from 'element-ui'
 
 
+Vue.use(TimelineItem)
+Vue.use(Timeline)
+Vue.use(Upload)
+Vue.use(Step)
+Vue.use(Steps)
 Vue.use(TabPane)
 Vue.use(Tabs)
 Vue.use(Alert)

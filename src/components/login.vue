@@ -41,6 +41,7 @@
 
 <script>
     import { v4 as uuidv4 } from 'uuid';
+    import cookie from 'js-cookie'
     export default {
     data() {
       return {
@@ -55,7 +56,7 @@
           pwd:'',
           code:'',
         },
-        src:'http://192.168.44.128:8000/api/code?code_id=',
+        src:this.BaseHost + '/v1/api/code?code_id=',//'http://192.168.44.128/v1/api/code?code_id=',
         rules: {
           username: [
             {required: true, message: '请输入名称', trigger: 'blur'},
@@ -87,7 +88,12 @@
                   // this.Error.code = res.msg
               }else {
                 this.$message.success('登录成功')
-                window.localStorage.setItem('token',res.data.token)
+                console.log(res.data.username)
+                cookie.set('token',res.data.token,new Date() + res.data.expires)
+                const next_url =  location.search.split('?next=')
+                if(next_url.length == 2){
+                  return this.$router.push(decodeURIComponent(next_url[1]))
+                }
                 this.$router.push('/index')
               }
             }

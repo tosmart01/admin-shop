@@ -64,7 +64,7 @@
       </el-pagination>
     </el-card>
     <!-- 添加用户对话框   -->
-    <el-dialog title="创建用户" :visible.sync="dialogVisible" width="50%"
+    <el-dialog title="创建用户" :visible.sync="dialogVisible" width="40%"
                @close="handleClose">
       <!-- 添加用户表单-->
       <el-form ref="form" :rules="rules" :model="userForm" label-width="80px">
@@ -258,6 +258,7 @@
           // console.log(this.userForm)
           const {data: res} = await this.axios.post('/api/user/', this.userForm)
           if (res.code != 200) return this.$message.error(res.msg)
+          this.$message.success('添加成功')
           this.getUserList({})
           this.dialogVisible = false
 
@@ -285,17 +286,9 @@
     }
   }
 </script>
-<style>
-  .el-input {
-    width: 300px;
-  }
-
-  .el-pagination {
-    margin-top: 12px;
-  }
-
+<style scoped>
   .el-form {
-    width: 400px;
+    width: 80%;
   }
 
 </style>

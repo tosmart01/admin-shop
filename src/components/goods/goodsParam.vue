@@ -314,7 +314,7 @@
 
   }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .el-card {
     margin-top: 15px;
   }
@@ -336,6 +336,5 @@
   .el-table .input-new-tag {
     width: 120px;
   }
-
 
 </style>
