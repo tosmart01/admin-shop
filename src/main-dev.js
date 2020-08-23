@@ -47,6 +47,7 @@ axios.interceptors.response.use(
     return hander
   },error => {
     if(error.response.status == 401){
+      cookie.remove('token')
       router.push('/login')
     }
     return Promise.reject(error.response.data)

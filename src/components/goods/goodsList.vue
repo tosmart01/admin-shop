@@ -21,7 +21,7 @@
       <!--商品表格-->
       <el-table :data="goodsList" stripe border>
         <el-table-column type="index" label="#"></el-table-column>
-        <el-table-column class-name="goodsName" width="580px" label="商品名称" prop="goods_name"></el-table-column>
+        <el-table-column class-name="goodsName" width="540px" label="商品名称" prop="goods_name"></el-table-column>
         <el-table-column width="140px" label="商品价格(元)" prop="goods_price"></el-table-column>
         <el-table-column width="100px" label="商品数量" prop="goods_number"></el-table-column>
         <el-table-column label="创建时间" prop="create_time"></el-table-column>
@@ -84,8 +84,8 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(async () => {
-          const {data:res} = await this.axios.delete('goods/goodslist/'+id)
-          if(res.code!=200) return this.$message.error(res.msg)
+          const {data: res} = await this.axios.delete('goods/goodslist/' + id)
+          if (res.code != 200) return this.$message.error(res.msg)
           this.getGoodsList()
           this.$message.success('删除成功')
 
@@ -97,7 +97,7 @@
         });
       }
       ,
-      addGoods(){
+      addGoods() {
         this.$router.push('/api/goodsSteps/')
       },
       //分页

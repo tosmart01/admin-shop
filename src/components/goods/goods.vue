@@ -81,6 +81,7 @@
       <!-- 分页-->
       <el-pagination
         @size-change="handleSizeChange"
+        background
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5, 10, 20, 100]"

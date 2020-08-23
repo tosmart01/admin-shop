@@ -96,6 +96,7 @@
 </template>
 <script>
   import _ from 'lodash'
+  import cookie from 'js-cookie'
   export default {
     created() {
       this.getGoodsCate()
@@ -119,7 +120,7 @@
         static: [],
         options: [],
         header: {
-          'Authorization': 'JWT ' + localStorage.getItem('token')
+          'Authorization': 'JWT ' + cookie.get('token')
 
         },
         activeName: '1',

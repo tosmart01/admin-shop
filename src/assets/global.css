@@ -1,8 +1,9 @@
-html,body,#app {
+html, body, #app {
     height: 100%;
     padding: 0;
-    margin:0;
+    margin: 0;
 }
+
 .el-breadcrumb {
     margin-bottom: 15px;
 }
@@ -10,21 +11,86 @@ html,body,#app {
 .el-table {
     margin-top: 15px;
     font-size: 12px !important;
+    min-width: 75%;
 }
-.el-card  {
+
+.el-card {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) !important;
 }
 
-.el-row{
-margin-bottom: 20px;
+.el-row {
+    margin-bottom: 20px;
 }
+
 .el-pagination {
     margin-top: 15px;
 }
 
 .quill-editor {
-width: 80%;
+    width: 80%;
 }
-.el-form .ql-container{
-min-height: 400px;
+
+.el-form .ql-container {
+    min-height: 400px;
 }
+
+
+.el-button--default {
+    border-radius: 0px;
+}
+
+.el-button {
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    outline: none;
+}
+
+.el-button--primary {
+    color: #fff;
+    background: linear-gradient(to right, #3a92fa 0%, #1fb8fd 100%);
+}
+
+.el-button--primary:hover {
+    background: linear-gradient(to right, #52A0FD 0%, #00c0fa 100%);
+    opacity: 0.8;
+}
+
+.el-button--warning {
+    color: #fff;
+    background: linear-gradient(to right, #f8ac29 0%, rgb(250, 189, 6) 100%);
+}
+
+.el-button--warning:hover {
+    background: linear-gradient(to right, #f8ac29 0%, rgb(250, 189, 6) 100%);
+    opacity: 0.8;
+}
+
+.el-button--danger {
+    color: #fff;
+    background: linear-gradient(to right, #fc3d3d 0%, rgb(243, 117, 80) 100%);
+}
+
+.el-button--danger:hover {
+    background: linear-gradient(to right, rgb(231, 18, 18) 0%, rgb(246, 81, 32) 100%);
+    opacity: 0.8;
+
+}
+
+.el-button--default {
+    border-radius: 0;
+    box-shadow: none;
+}
+.el-dialog .el-button--default {
+    border-radius: 0.5em;
+}
+
+.el-header {
+    background: linear-gradient(to right, rgb(36, 49, 49) 0%, rgb(59, 58, 58) 100%);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+

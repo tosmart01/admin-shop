@@ -39,7 +39,6 @@ axios.interceptors.request.use(
   err => {
     return Promise.reject(err.response.status)
   })
-
 // http response 拦截器
 axios.interceptors.response.use(
   hander =>{
@@ -47,6 +46,7 @@ axios.interceptors.response.use(
     return hander
   },error => {
     if(error.response.status == 401){
+      cookie.remove('token')
       router.push('/login')
     }
     return Promise.reject(error.response.data)
